@@ -9,6 +9,12 @@ public class Circle
         this.radius = radius;
     }
 
+    public Circle(double radius, String color, boolean filled) {
+        this.radius = radius;
+        setColor(color);
+        setFilled(filled);
+    }
+
     /** Return radius */
     public double getRadius() {
         return radius;
@@ -36,8 +42,10 @@ public class Circle
 
     /** Print the circle info */
     public void printCircle() {
-        System.out.println("The circle is created " + getDateCreated() +
-                " and the radius is " + radius);
+        System.out.println("The circle is created " +
+                getDateCreated() +
+                " and the radius is " +
+                radius);
     }
 
     /** Override compareTo() to evaluate radius*/
@@ -46,7 +54,13 @@ public class Circle
         return Double.compare(this.radius, obj.radius);
     }
 
+    /** Override equals(Object obj) to compare radius*/
+    @Override
     public boolean equals(Object obj) {
-        return this.getRadius() == ((Circle)obj).getRadius();
+        if (obj instanceof Circle){
+            return this.radius == ((Circle)obj).radius;
+        } else {
+            return false;
+        }
     }
 }
